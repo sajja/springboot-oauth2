@@ -3,8 +3,7 @@
 #    oauth2:
 #      client:
 #        registration:
-#          github1:
-#            provider: github
+#          github:
 #            clientId: 2cbd1dff018f5421c92f
 #            clientSecret:  b26a903c3bf5cbb0373806756157096db04bc13e
 #          idsvr:
@@ -16,7 +15,7 @@
 #            scope: openid, profile
 #        provider:
 #          idsvr:
-#          issuer-uri: https://localhost:8442/oauth/anonymous
+#          issuer-uri: https://localhost:8443/oauth/v2/oauth-anonymous
 spring:
   security:
     oauth2:
@@ -28,13 +27,3 @@ spring:
           google:
             client-id: 438299388802-ksd66vi7r8kp7pepbfeqqvuh4ve37cp3.apps.googleusercontent.com
             client-secret: Xm0-AUxyGcttMYeh9DLhkT1p
-#          idsvr:
-#            client-name: Login with the Curity Identity Server
-#            client-id: www
-#            client-secret: 12345678
-#            authorization-grant-type: authorization_code
-#            redirect-uri: "http://localhost:8080/"
-#            scope: openid, profile
-#        provider:
-#          idsvr:
-#            issuer-uri: https://localhost:8443/oauth/v2/oauth-anonymous
