@@ -25,23 +25,12 @@ import java.util.Map;
 @SpringBootApplication
 @RestController
 public class DemoApplication extends WebSecurityConfigurerAdapter {
-    private static final TrustManager[] UNQUESTIONING_TRUST_MANAGER = new TrustManager[]{
-            new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }
-    };
 
     @RequestMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        return Collections.singletonMap("name", principal.getAttribute("name"));
+        Map<String, Object> kv = principal.getAttributes();
+//        return Collections.singletonMap("name", principal.getAttribute("name"));
+        return kv;
     }
 
     @Override
@@ -67,10 +56,6 @@ public class DemoApplication extends WebSecurityConfigurerAdapter {
     }
 
     public static void main(String[] args) throws Exception {
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, UNQUESTIONING_TRUST_MANAGER, null);
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
         SpringApplication.run(DemoApplication.class, args);
     }
 }

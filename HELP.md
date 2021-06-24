@@ -9,5 +9,21 @@ http://localhost:8080/login/oauth2/code/github
 1. Download curity cert. 
 ```
 cd $JAVA_HOME/lib/security
-keytool -import -trustcacerts -keystore cacerts -storepass changeit -alias localhost -import -file curity_cert 
+```
+
+2. Check if theres a certificate already installed
+
+```
+keytool -list -trustcacerts -keystore ~/apps/jdk-11/lib/security/cacerts -storepass changeit|grep localhost
+```
+
+3. if so remove it
+
+```
+keytool -delete -trustcacerts -keystore ~/apps/jdk-11/lib/security/cacerts -storepass changeit -alias localhost
+```
+
+4. Install the new cert
+```
+keytool -import -trustcacerts -keystore ~/apps/jdk-11/lib/security/cacerts -storepass changeit -alias localhost -file curitycert
 ```
